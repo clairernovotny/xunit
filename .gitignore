@@ -15,4 +15,5 @@ help
 *.cache
 *.nupkg
 *.exe
-*.dll
+TestResults/
+build/
