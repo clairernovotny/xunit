@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="xUnit_Test_Library_Template..df8d0783-c4c6-4222-98cf-503f8b4c5b12" Version="1.0" Language="en-US" Publisher="Oren Novotny" />
+    <DisplayName>xUnit Test Library Template</DisplayName>
+    <Description>Project template for xUnit Metro style tests</Description>
+    <License>EULA.txt</License>
+    <Icon>__TemplateIcon.png</Icon>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Version="[11.0,12.0)" Id="Microsoft.VisualStudio.Premium" />
+    <InstallationTarget Version="[11.0,12.0)" Id="Microsoft.VisualStudio.Ultimate" />
+    <InstallationTarget Version="[11.0,12.0)" Id="Microsoft.VisualStudio.Pro" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="4.5" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="xUnit Test Library (Metro style apps)" d:TargetPath="|xUnit Test Library (Metro style apps);TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+  </Assets>
+</PackageManifest>

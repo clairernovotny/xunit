@@ -1,0 +1,44 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>xUnit Test Library (Metro style apps)</Name>
+    <Description>A unit test library for using xUnit in Metro style apps</Description>
+    <Icon>__TemplateIcon.png</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>Windows Tailored</ProjectSubType>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+    <SortOrder>1000</SortOrder>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>UnitTestLibrary</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <TargetPlatformName>Windows</TargetPlatformName>
+    <RequiredPlatformVersion>8</RequiredPlatformVersion>
+    <CreateInPlace>true</CreateInPlace>
+  </TemplateData>
+  <TemplateContent>
+    <CustomParameters>
+      <CustomParameter Name="$MSTestExecutorName$" Value="MSTestExecutor"/>
+    </CustomParameters>
+    <Project File="UnitTestLibrary.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">UnitTest1.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Package.appxmanifest">Package-managed.appxmanifest</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestLogo.png">UnitTestLogo.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestSmallLogo.png">UnitTestSmallLogo.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestSplashScreen.png">UnitTestSplashScreen.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestStoreLogo.png">UnitTestStoreLogo.png</ProjectItem>
+      
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$_TemporaryKey.pfx">Application_TemporaryKey.pfx</ProjectItem>
+      
+      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\SDKManifest.xml">bin\SDKManifest.xml</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\Redist\CommonConfiguration\neutral">bin\Redist\CommonConfiguration\neutral\xunit.runner.utility.dll</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\Redist\CommonConfiguration\neutral">bin\Redist\CommonConfiguration\neutral\xunit.runner.visualstudio.dll</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral">bin\References\CommonConfiguration\neutral\xunit.dll</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral">bin\References\CommonConfiguration\neutral\xunit.xml</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.WinRT.TemplateWizards, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.WinRT.TemplateWizards.CreateProjectCertificate.Wizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
