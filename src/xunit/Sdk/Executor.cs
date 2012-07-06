@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
-using System.Security.Permissions;
+using System.Security;
 using System.Threading;
 using System.Xml;
 
@@ -16,18 +16,36 @@ namespace Xunit.Sdk
     /// </summary>
     public class Executor : MarshalByRefObject
     {
+        readonly bool isInAppContainer;
         readonly Assembly assembly;
         readonly string assemblyFilename;
 
         /// <summary/>
         public Executor(string assemblyFilename)
+            :this(assemblyFilename, false)
         {
-            this.assemblyFilename = Path.GetFullPath(assemblyFilename);
-            assembly = Assembly.Load(AssemblyName.GetAssemblyName(this.assemblyFilename));
+            
         }
 
         /// <summary/>
-        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+        public Executor(string assemblyFilename, bool isInAppContainer)
+        {
+            this.isInAppContainer = isInAppContainer;
+            this.assemblyFilename = Path.GetFullPath(assemblyFilename);
+            if (isInAppContainer)
+            {
+                // filename w/o extension
+                assembly = Assembly.Load(new AssemblyName(Path.GetFileNameWithoutExtension(assemblyFilename)));
+
+            }
+            else
+                assembly = Assembly.Load(AssemblyName.GetAssemblyName(this.assemblyFilename));  
+              
+
+        }
+
+        /// <summary/>
+        [SecurityCritical]
         public override Object InitializeLifetimeService()
         {
             return null;
@@ -57,7 +75,7 @@ namespace Xunit.Sdk
             }
 
             /// <summary/>
-            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+            [SecurityCritical]
             public override Object InitializeLifetimeService()
             {
                 return null;
@@ -127,7 +145,7 @@ namespace Xunit.Sdk
             }
 
             /// <summary/>
-            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+            [SecurityCritical]
             public override Object InitializeLifetimeService()
             {
                 return null;
@@ -173,7 +191,7 @@ namespace Xunit.Sdk
             }
 
             /// <summary/>
-            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+            [SecurityCritical]
             public override Object InitializeLifetimeService()
             {
                 return null;
@@ -191,7 +209,7 @@ namespace Xunit.Sdk
             }
 
             /// <summary/>
-            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+            [SecurityCritical]
             public override Object InitializeLifetimeService()
             {
                 return null;
@@ -214,7 +232,7 @@ namespace Xunit.Sdk
             }
 
             /// <summary/>
-            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+            [SecurityCritical]
             public override Object InitializeLifetimeService()
             {
                 return null;
@@ -270,7 +288,7 @@ namespace Xunit.Sdk
             }
 
             /// <summary/>
-            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+            [SecurityCritical]
             public override Object InitializeLifetimeService()
             {
                 return null;
@@ -302,7 +320,7 @@ namespace Xunit.Sdk
 
         void RunOnSTAThreadWithPreservedWorkingDirectory(ThreadStart threadStart)
         {
-            Thread thread = new Thread(ThreadRunner) { Name = "xUnit.net STA Test Execution Thread" };
+            Thread thread = new Thread(ThreadRunner) {Name = "xUnit.net STA Test Execution Thread"};
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start(threadStart);
         }
@@ -313,13 +331,17 @@ namespace Xunit.Sdk
 
             try
             {
-                Directory.SetCurrentDirectory(Path.GetDirectoryName(assemblyFilename));
+                if (!isInAppContainer)
+                    Directory.SetCurrentDirectory(Path.GetDirectoryName(assemblyFilename));
+
                 ((ThreadStart)threadStart)();
             }
             finally
             {
-                Directory.SetCurrentDirectory(preservedDirectory);
+                if (!isInAppContainer)
+                    Directory.SetCurrentDirectory(preservedDirectory);
             }
+
         }
     }
 }

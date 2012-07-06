@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using System.Security.Permissions;
+using System.Security;
 
 namespace Xunit.Sdk
 {
@@ -108,7 +108,7 @@ namespace Xunit.Sdk
         }
 
         /// <inheritdoc/>
-        [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
+        [SecurityCritical]
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "The only legitimate caller is the .NET Framework")]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {

@@ -7,6 +7,7 @@ using System.Xml;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel.Adapter;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Xunit.Sdk;
 using VsTestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
@@ -89,7 +90,12 @@ namespace Xunit.Runner.VisualStudio
 
         static bool IsXunitTestAssembly(string assemblyFileName)
         {
-            string xunitPath = Path.Combine(Path.GetDirectoryName(assemblyFileName), "xunit.dll");
+            string xunitPath;
+            if (!AppContainerUtilities.IsCurrentProcessInAppContainer)
+                xunitPath = Path.Combine(Path.GetDirectoryName(assemblyFileName), "xunit.dll");
+            else
+                xunitPath = Path.Combine(Environment.CurrentDirectory, "xunit.dll");
+
             return File.Exists(xunitPath);
         }
 

@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Xunit</RootNamespace>
     <AssemblyName>xunit.runner.utility</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Signing.snk</AssemblyOriginatorKeyFile>
@@ -34,6 +34,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +46,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\xunit.runner.utility.xml</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,6 +57,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\xunit.runner.utility.xml</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -93,6 +96,7 @@
     <Compile Include="TestRunner\TestRunner.cs" />
     <Compile Include="Transformers\NullTransformer.cs" />
     <Compile Include="Transformers\XslStreamTransformer.cs" />
+    <Compile Include="Utility\AppContainerUtilities.cs" />
     <Compile Include="Utility\DynamicTypeGenerator.cs" />
     <Compile Include="Utility\MultiValueDictionary.cs" />
     <Compile Include="Utility\TestAssemblyBuilder.cs" />

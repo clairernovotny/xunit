@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Messaging;
 using System.Security;
 using System.Security.Permissions;
 using System.Threading;
 using System.Xml;
+using Xunit.Utility;
 
 namespace Xunit
 {
@@ -59,7 +61,11 @@ namespace Xunit
         /// <param name="shadowCopy">Set to true to enable shadow copying; false, otherwise.</param>
         public ExecutorWrapper(string assemblyFilename, string configFilename, bool shadowCopy)
         {
-            assemblyFilename = Path.GetFullPath(assemblyFilename);
+            if (!AppContainerUtilities.IsCurrentProcessInAppContainer)
+                assemblyFilename = Path.GetFullPath(assemblyFilename);
+            else
+                assemblyFilename = Path.Combine(Environment.CurrentDirectory, Path.GetFileName(assemblyFilename));
+            
             if (!File.Exists(assemblyFilename))
                 throw new ArgumentException("Could not find file: " + assemblyFilename);
 
@@ -72,7 +78,8 @@ namespace Xunit
             AssemblyFilename = assemblyFilename;
             ConfigFilename = configFilename;
 
-            appDomain = CreateAppDomain(assemblyFilename, configFilename, shadowCopy);
+            if (!AppContainerUtilities.IsCurrentProcessInAppContainer)
+                appDomain = CreateAppDomain(assemblyFilename, configFilename, shadowCopy);
 
             try
             {
@@ -82,7 +89,7 @@ namespace Xunit
                     throw new ArgumentException("Could not find file: " + xunitAssemblyFilename);
 
                 xunitAssemblyName = AssemblyName.GetAssemblyName(xunitAssemblyFilename);
-                executor = CreateObject("Xunit.Sdk.Executor", AssemblyFilename);
+                executor = CreateObject("Xunit.Sdk.Executor", AssemblyFilename, AppContainerUtilities.IsCurrentProcessInAppContainer);
 
                 Version xunitVersion = new Version(XunitVersion);
 
@@ -160,6 +167,15 @@ namespace Xunit
         {
             try
             {
+                if (AppContainerUtilities.IsCurrentProcessInAppContainer)
+                {
+                    var an = new AssemblyName("xunit");
+
+                    var assm = Assembly.Load(an);
+                    var t = assm.GetType(typeName);
+                    var i = Activator.CreateInstance(t, args);
+                    return i;
+                }
                 return appDomain.CreateInstanceAndUnwrap(xunitAssemblyName.FullName, typeName, false, 0, null, args, null, null, null);
             }
             catch (TargetInvocationException ex)
@@ -269,9 +285,7 @@ namespace Xunit
 
         static void RethrowWithNoStackTraceLoss(Exception ex)
         {
-            FieldInfo remoteStackTraceString = typeof(Exception).GetField("_remoteStackTraceString", BindingFlags.Instance | BindingFlags.NonPublic);
-            remoteStackTraceString.SetValue(ex, ex.StackTrace + Environment.NewLine);
-            throw ex;
+            ExceptionDispatchInfo.Capture(ex).Throw();
         }
 
         /// <summary>
@@ -480,6 +494,7 @@ namespace Xunit
 
             IDictionary IMessage.Properties
             {
+                [SecurityCritical]
                 get { return values; }
             }
         }

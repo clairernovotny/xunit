@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 
 namespace Xunit.Sdk
 {
@@ -82,12 +83,7 @@ namespace Xunit.Sdk
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "This parameter is verified elsewhere.")]
         public static void RethrowWithNoStackTraceLoss(Exception ex)
         {
-            FieldInfo remoteStackTraceString =
-                typeof(Exception).GetField("_remoteStackTraceString", BindingFlags.Instance | BindingFlags.NonPublic) ??
-                typeof(Exception).GetField("remote_stack_trace", BindingFlags.Instance | BindingFlags.NonPublic);
-
-            remoteStackTraceString.SetValue(ex, ex.StackTrace + RETHROW_MARKER);
-            throw ex;
+            ExceptionDispatchInfo.Capture(ex).Throw();
         }
     }
 }

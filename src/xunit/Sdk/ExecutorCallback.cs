@@ -3,6 +3,7 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.Remoting.Messaging;
+using System.Security;
 
 namespace Xunit.Sdk
 {
@@ -78,6 +79,7 @@ namespace Xunit.Sdk
 
                 IDictionary IMessage.Properties
                 {
+                    [SecurityCritical]
                     get { return values; }
                 }
             }
