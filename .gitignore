@@ -16,5 +16,4 @@ TestResults
 *.cache
 *.nupkg
 *.exe
-TestResults/
 build/
