@@ -1,7 +1,7 @@
 ﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>xUnit Test Library (Metro style apps)</Name>
-    <Description>A unit test library for using xUnit in Metro style apps</Description>
+    <Name>xUnit Test Library (Windows Store apps)</Name>
+    <Description>A unit test library for using xUnit in Windows Store apps</Description>
     <Icon>__TemplateIcon.png</Icon>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Windows Tailored</ProjectSubType>
@@ -29,12 +29,18 @@
       <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestStoreLogo.png">UnitTestStoreLogo.png</ProjectItem>
       
       <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$_TemporaryKey.pfx">Application_TemporaryKey.pfx</ProjectItem>
+      <Folder Name="bin" TargetFolderName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0" >
+        <ProjectItem ReplaceParameters="false">SDKManifest.xml</ProjectItem>  
+      </Folder>
+      <Folder Name="bin\Redist\CommonConfiguration\neutral" TargetFolderName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\Redist\CommonConfiguration\neutral">
+        <ProjectItem ReplaceParameters="false">xunit.runner.utility.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false">xunit.runner.visualstudio.dll</ProjectItem>
+      </Folder>
+      <Folder Name="bin\References\CommonConfiguration\neutral" TargetFolderName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral">
+        <ProjectItem ReplaceParameters="false" >xunit.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" >xunit.xml</ProjectItem>
+      </Folder>
       
-      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\SDKManifest.xml">bin\SDKManifest.xml</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\Redist\CommonConfiguration\neutral">bin\Redist\CommonConfiguration\neutral\xunit.runner.utility.dll</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\Redist\CommonConfiguration\neutral">bin\Redist\CommonConfiguration\neutral\xunit.runner.visualstudio.dll</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral">bin\References\CommonConfiguration\neutral\xunit.dll</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral">bin\References\CommonConfiguration\neutral\xunit.xml</ProjectItem>
     </Project>
   </TemplateContent>
   <WizardExtension>

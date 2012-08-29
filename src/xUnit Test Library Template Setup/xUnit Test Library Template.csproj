@@ -64,9 +64,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\xUnit Test Library %28Metro style apps%29\xUnit Test Library %28Metro style apps%29.csproj">
-      <Project>{8F02DE2D-AFD1-4E4E-87F5-D35BC58537A7}</Project>
-      <Name>xUnit Test Library %28Metro style apps%29</Name>
+    <ProjectReference Include="..\xUnit Test Library %28Windows Store apps%29\xUnit Test Library %28Windows Store apps%29.csproj">
+      <Project>{8f02de2d-afd1-4e4e-87f5-d35bc58537a7}</Project>
+      <Name>xUnit Test Library %28Windows Store apps%29</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
