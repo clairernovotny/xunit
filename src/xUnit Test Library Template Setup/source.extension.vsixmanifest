@@ -8,8 +8,6 @@
     <Icon>__TemplateIcon.png</Icon>
   </Metadata>
   <Installation>
-    <InstallationTarget Version="[11.0,12.0)" Id="Microsoft.VisualStudio.Premium" />
-    <InstallationTarget Version="[11.0,12.0)" Id="Microsoft.VisualStudio.Ultimate" />
     <InstallationTarget Version="[11.0,12.0)" Id="Microsoft.VisualStudio.Pro" />
   </Installation>
   <Dependencies>

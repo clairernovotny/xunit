@@ -1,11 +1,10 @@
-﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>xUnit Test Library (Windows Store apps)</Name>
     <Description>A unit test library for using xUnit in Windows Store apps</Description>
     <Icon>__TemplateIcon.png</Icon>
     <ProjectType>CSharp</ProjectType>
-    <ProjectSubType>Windows Tailored</ProjectSubType>
-    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
     <CreateNewFolder>true</CreateNewFolder>
