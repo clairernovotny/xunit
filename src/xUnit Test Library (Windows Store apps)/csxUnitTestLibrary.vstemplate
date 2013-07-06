@@ -38,6 +38,8 @@
       <Folder Name="bin\References\CommonConfiguration\neutral" TargetFolderName="libs\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral">
         <ProjectItem ReplaceParameters="false" >xunit.dll</ProjectItem>
         <ProjectItem ReplaceParameters="false" >xunit.xml</ProjectItem>
+        <ProjectItem ReplaceParameters="false" >xunit.extensions.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" >xunit.extensions.xml</ProjectItem>
       </Folder>
       
     </Project>

@@ -41,6 +41,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\xunit.extensions\xunit.extensions.csproj">
+      <Project>{737943c1-4301-47f4-932b-a67be3788c40}</Project>
+      <Name>xunit.extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\xunit.runner.utility\xunit.runner.utility.csproj">
       <Project>{2ce5d729-2e2a-4d36-8161-0f215b1c46af}</Project>
       <Name>xunit.runner.utility</Name>
@@ -63,6 +67,8 @@ move /y "$(TargetDir)Windows" "$(SolutionDir)build"
 if not exist "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral" mkdir "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral"
 move /y "$(TargetDir)xunit.dll" "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral"
 move /y "$(TargetDir)xunit.xml" "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral"
+move /y "$(TargetDir)xunit.extensions.dll" "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral"
+move /y "$(TargetDir)xunit.extensions.xml" "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\References\CommonConfiguration\neutral"
 
 if not exist "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\Redist\CommonConfiguration\neutral" mkdir "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\Redist\CommonConfiguration\neutral"
 move /y "$(TargetDir)xunit.runner.utility.dll" "$(SolutionDir)build\Windows\v8.0\ExtensionSDKs\XUnit\2.0\Redist\CommonConfiguration\neutral"
