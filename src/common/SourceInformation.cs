@@ -2,7 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using Xunit.Abstractions;
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_PHONE
 using Xunit.Serialization;
 #endif
 

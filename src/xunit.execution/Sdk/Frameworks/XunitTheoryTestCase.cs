@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xunit.Abstractions;
 
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_PHONE
 using Xunit.Serialization;
 #endif
 

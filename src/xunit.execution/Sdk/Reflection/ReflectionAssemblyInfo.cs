@@ -29,7 +29,7 @@ namespace Xunit.Sdk
         /// <param name="assemblyFileName">The assembly to be wrapped.</param>
         public ReflectionAssemblyInfo(string assemblyFileName)
         {
-#if !ANDROID && !WIN8_STORE && !WINDOWS_PHONE_APP
+#if !ANDROID && !WIN8_STORE && !WINDOWS_PHONE_APP && !WINDOWS_PHONE
             Assembly = Assembly.Load(AssemblyName.GetAssemblyName(assemblyFileName));
 #elif WIN8_STORE 
             try
@@ -41,7 +41,7 @@ namespace Xunit.Sdk
 
                 Assembly = Assembly.Load(Path.GetFileNameWithoutExtension(assemblyFileName));
             }
-#elif WINDOWS_PHONE_APP
+#elif WINDOWS_PHONE_APP || WINDOWS_PHONE
             Assembly = Assembly.Load(new AssemblyName
             {
                 Name = Path.GetFileNameWithoutExtension(assemblyFileName)
@@ -59,7 +59,7 @@ namespace Xunit.Sdk
         {
             get
             {
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
                 return Assembly.GetLocalCodeBase();
 #else
                 return Assembly.GetName()

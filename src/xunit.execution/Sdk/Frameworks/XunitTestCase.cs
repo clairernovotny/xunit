@@ -12,13 +12,16 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Xunit.Abstractions;
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
 using System.Security.Cryptography;
-#else
+#elif WINDOWS_PHONE_APP
 using Xunit.Serialization;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using System.Runtime.InteropServices.WindowsRuntime;
+#else
+using System.Security.Cryptography;
+using Xunit.Serialization;
 #endif
 
 namespace Xunit.Sdk

@@ -183,7 +183,7 @@ namespace Xunit.Sdk
 
             public PreserveWorkingFolder(IAssemblyInfo assemblyInfo)
             {
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
                 originalWorkingFolder = Directory.GetCurrentDirectory();
 
                 if (!String.IsNullOrEmpty(assemblyInfo.AssemblyPath))
@@ -193,7 +193,7 @@ namespace Xunit.Sdk
 
             public void Dispose()
             {
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
                 Directory.SetCurrentDirectory(originalWorkingFolder);
 #endif
             }

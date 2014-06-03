@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using Windows.ApplicationModel;
-using Windows.UI.Xaml.Controls;
 
 namespace System.IO
 {
