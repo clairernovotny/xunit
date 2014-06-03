@@ -26,9 +26,9 @@ namespace Xunit
         public Xunit2(ISourceInformationProvider sourceInformationProvider, string assemblyFileName, string configFileName = null, bool shadowCopy = true, string shadowCopyFolder = null)
             : base(sourceInformationProvider, assemblyFileName, configFileName, shadowCopy, shadowCopyFolder)
         {
-#if !ANDROID && !WINDOWS_PHONE_APP
+#if !ANDROID && !WINDOWS_PHONE_APP && !WINDOWS_PHONE
             AssemblyName assemblyName = AssemblyName.GetAssemblyName(assemblyFileName);
-#elif WINDOWS_PHONE_APP
+#elif WINDOWS_PHONE_APP || WINDOWS_PHONE
             var assm = Assembly.Load(new AssemblyName
             {
                 Name = Path.GetFileNameWithoutExtension(assemblyFileName)

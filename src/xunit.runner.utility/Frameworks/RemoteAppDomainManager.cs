@@ -72,7 +72,7 @@ namespace Xunit
 #if !NO_APPDOMAIN
                 object unwrappedObject = AppDomain.CreateInstanceAndUnwrap(assemblyName, typeName, false, 0, null, args, null, null, null);
                 return (TObject)unwrappedObject;
-#elif !WINDOWS_PHONE_APP
+#elif !WINDOWS_PHONE_APP && !WINDOWS_PHONE
                 var objHandle = Activator.CreateInstance(AppDomain.CurrentDomain, assemblyName, typeName, false, BindingFlags.Default, null, args, null, null);
                 return (TObject)objHandle.Unwrap();                    
 #else

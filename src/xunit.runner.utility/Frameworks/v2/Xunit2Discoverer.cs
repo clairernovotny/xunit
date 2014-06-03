@@ -58,7 +58,7 @@ namespace Xunit
         }
 
 
-#if !ANDROID && !WINDOWS_PHONE_APP
+#if !ANDROID && !WINDOWS_PHONE_APP && !WINDOWS_PHONE
         private static string GetTestFrameworkAssemblyName(string xunitExecutionAssemblyPath)
         {
             // default logic for .NET 4.5/3.5
@@ -69,7 +69,7 @@ namespace Xunit
         }
 #endif
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_PHONE
         private static string GetTestFrameworkAssemblyName(string xunitExecutionAssemblyPath)
         {
             // WPA 81 needs an AssemblyName that has the assembly short name (w/o extension)

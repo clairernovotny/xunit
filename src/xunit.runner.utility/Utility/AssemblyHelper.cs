@@ -11,7 +11,7 @@ namespace Xunit
     /// </summary>
     public class AssemblyHelper : IDisposable
     {
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
         string folder;
 
         AssemblyHelper(string folder)
@@ -57,7 +57,7 @@ namespace Xunit
 
 #endif
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_PHONE
         public static IDisposable SubscribeResolve()
         {
             return new AssemblyHelper();
@@ -66,7 +66,7 @@ namespace Xunit
         /// <inheritdoc/>
         public void Dispose()
         {
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
             AppDomain.CurrentDomain.AssemblyResolve -= Resolve;
 #endif
         }

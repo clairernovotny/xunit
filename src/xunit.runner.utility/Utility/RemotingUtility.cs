@@ -1,5 +1,5 @@
 ﻿
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
 using System.Runtime.Remoting.Channels;
 #endif
 
@@ -23,7 +23,7 @@ namespace Xunit
         /// </remarks>
         public static void CleanUpRegisteredChannels()
         {
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
             foreach (IChannel chan in ChannelServices.RegisteredChannels)
                 ChannelServices.UnregisterChannel(chan);
 #endif

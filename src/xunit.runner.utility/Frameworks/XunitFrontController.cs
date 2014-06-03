@@ -48,7 +48,7 @@ namespace Xunit
 
             if (this.sourceInformationProvider == null)
             {
-#if !XAMARIN && !WINDOWS_PHONE_APP
+#if !XAMARIN && !WINDOWS_PHONE_APP && !WINDOWS_PHONE
                 this.sourceInformationProvider = new VisualStudioSourceInformationProvider(assemblyFileName);
 #else
                 this.sourceInformationProvider = new NullSourceInformationProvider();
@@ -100,7 +100,7 @@ namespace Xunit
             if (File.Exists(xunitExecutionPath))
 #endif
                 return new Xunit2(sourceInformationProvider, assemblyFileName, configFileName, shadowCopy, shadowCopyFolder);
-#if !XAMARIN && !WINDOWS_PHONE_APP
+#if !XAMARIN && !WINDOWS_PHONE_APP && !WINDOWS_PHONE
             if (File.Exists(xunitPath))
                 return new Xunit1(sourceInformationProvider, assemblyFileName, configFileName, shadowCopy, shadowCopyFolder);
 #endif

@@ -1,5 +1,5 @@
 ﻿using System;
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
 using System.Runtime.Remoting;
 #endif
 using System.Security;
@@ -12,7 +12,7 @@ namespace Xunit
     /// longer than the remoting default lifetime (5 minutes).
     /// </summary>
     public abstract class LongLivedMarshalByRefObject :
-#if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP && !WINDOWS_PHONE
         MarshalByRefObject,
 #endif
  IDisposable

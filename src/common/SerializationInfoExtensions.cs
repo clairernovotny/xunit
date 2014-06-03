@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using Xunit;
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_PHONE
 using Xunit.Serialization;
 #endif
 
