@@ -1,5 +1,5 @@
 ﻿
-#if !WIN8_STORE && !WINDOWS_PHONE_APP
+#if !WIN8_STORE && !WINDOWS_PHONE_APP && !WINDOWS_PHONE
 using System.ComponentModel.Composition;
 #endif
 using System.Xml;
@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestPlatform.ObjectModel.Adapter;
 
 namespace Xunit.Runner.VisualStudio.Settings
 {
-#if !WIN8_STORE && !WINDOWS_PHONE_APP
+#if !WIN8_STORE && !WINDOWS_PHONE_APP && !WINDOWS_PHONE
     [Export(typeof(ISettingsProvider))]
 #endif
     [SettingsName(XunitTestRunSettings.SettingsName)]
